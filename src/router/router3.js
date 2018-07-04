@@ -6,10 +6,10 @@ router.get('/teamSLA',(req,res)=>{
 
    res.json(file);
 
-
-
-
-
-
 });
+router.get('/applicationSLA',(req,res)=>{
+
+    res.json(file);
+ 
+ });
 module.exports=router;
