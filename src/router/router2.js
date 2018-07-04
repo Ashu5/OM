@@ -6,6 +6,6 @@ res.send("Hello");
 
 
 
-
+res.end();
 });
 module.exports=router;
