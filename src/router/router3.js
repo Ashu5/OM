@@ -18,19 +18,24 @@ router.get('/SLA/:id',(req,res)=>{
   }
 
 });
-router.get('/SLAComp/team/:id',(req,res)=>{
+router.get('/SLAComp/application/:id',(req,res)=>{
 
     if(req.params.id == "weekly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byApp.WTDData;
+        res.json(valu2);
+       
        }
       else if(req.params.id == "monthly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byApp.MTDData;
+        res.json(valu2);
        }
        else if(req.params.id == "quaterely"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byApp.QTDData;
+        res.json(valu2);
        }
        else if(req.params.id == "yearly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byApp.YTDData;
+        res.json(valu2);
        }
       else{
           res.send("wrong Url Guys");
@@ -38,19 +43,23 @@ router.get('/SLAComp/team/:id',(req,res)=>{
  
  });
 
- router.get('/SLAComp/application/:id',(req,res)=>{
+ router.get('/SLAComp/team/:id',(req,res)=>{
 
     if(req.params.id == "weekly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byPerson.WTDData;
+        res.json(valu2);
        }
       else if(req.params.id == "monthly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byPerson.MTDData;
+        res.json(valu2);
        }
        else if(req.params.id == "quaterely"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byPerson.QTDData;
+        res.json(valu2);
        }
        else if(req.params.id == "yearly"){
-        res.json(file);
+        var valu2=file[0].resolutionSLACompliance.byPerson.YTDData;
+        res.json(valu2);
        }
       else{
           res.send("wrong Url Guys");
