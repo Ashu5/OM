@@ -16,6 +16,9 @@
     "port":3000,
     "appName":"appName",
     "raisedCount":"raisedCount",
-    "openCount":"openCount"
+    "openCount":"openCount",
+    "label":"label",
+    "teamResolvedPercent":"teamResolvedPercent",
+    "myResolvedPercent":"myResolvedPercent"
   }
 }
