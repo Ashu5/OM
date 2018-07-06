@@ -13,7 +13,8 @@
         for (var i = 0; i < key1.length; i++) {
            if(key1[i]==static[i]){
              obj[key1[i]] = file[0][key1[i]];
-            }}
+            }
+        }
         for (var i = 0; i < key2.length; i++) {
            obj[key2[i]] = file[0]["openCount"][key2[i]];
           }
