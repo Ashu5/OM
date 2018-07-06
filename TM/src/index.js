@@ -7,8 +7,8 @@ const fs = require('fs');
 const port = JSON.parse(fs.readFileSync('../package.json'));
 
 // Using Middleware
-//app.use('/api',require('./routes/route1'));
-//app.use('/api',require('./routes/route2'));
+app.use('/api',require('./routes/route1'));
+app.use('/api',require('./routes/route2'));
 app.use('/api',require('./routes/route3'));
 
 // Default Url
