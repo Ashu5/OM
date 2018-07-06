@@ -1,5 +1,5 @@
 {
-  "name": "TM",
+  "name": "com-tm",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "variable":{
+    "port":4000
   }
 }

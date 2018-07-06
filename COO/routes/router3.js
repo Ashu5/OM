@@ -1,7 +1,12 @@
+// Express Dependency
 const express = require('express');
 const router = express.Router();
+
+//JSON File 
 const fs = require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryCOO.json'));
+
+//Ticket Categories  basis on Weekly,Monthly,Quarterly,Yearly
 router.get('/category/:Id',(req,res)=>
 {
     if(req.params.Id == "weekly"){
@@ -26,4 +31,5 @@ router.get('/category/:Id',(req,res)=>
 
 });
 
+//Exporting this Middleware
 module.exports = router;

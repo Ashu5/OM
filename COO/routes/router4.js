@@ -1,10 +1,13 @@
+// Express Dependency
 const express = require('express');
 const router = express.Router();
+
+//JSON File 
 const fs = require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryCOO.json'));
 const external = JSON.parse(fs.readFileSync('../package.json'));
 
-
+//S1 and S2 Raised Trend basis on Daily,Weekly,Monthly,Quarterly
 router.get('/s1ands2/:Id',(req,res)=>{
  static = [external.variable.s1,external.variable.s2,external.variable.raisedCount];
  var result = [];
@@ -152,6 +155,8 @@ router.get('/s1ands2/:Id',(req,res)=>{
     }
 
 });
+
+//S3 and S4 Raised Trend basis on Daily,Weekly,Monthly,Quarterly
 router.get('/s3ands4/:Id',(req,res)=>{
     static = [external.variable.s3,external.variable.s4,external.variable.raisedCount];
     var result = [];
@@ -301,5 +306,5 @@ router.get('/s3ands4/:Id',(req,res)=>{
 
 });
 
-
+//Exporting this Middleware
 module.exports=router;

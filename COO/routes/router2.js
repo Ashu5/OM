@@ -1,10 +1,13 @@
+// Express Dependency
 const express = require('express');
 const router = express.Router();
+
+//JSON File 
 const fs = require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryCOO.json'));
 const external = JSON.parse(fs.readFileSync('../package.json'));  
 
-
+//Ticket Trend basis on Daily,Weekly,Monthly,Quarterly
 router.get('/ticket/:Id',(req,res)=>{
    
     var static = [external.variable.totalRaisedCount,external.variable.totalResolvedCount];    
@@ -90,4 +93,6 @@ router.get('/ticket/:Id',(req,res)=>{
         res.send("wrong Url");
     }
 });
+
+//Exporting this Middleware
 module.exports = router;

@@ -1,9 +1,13 @@
+// Express Dependency
 const express = require('express');
 const router = express.Router();
+
+//JSON File 
 const fs = require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryCOO.json'));
 const external = JSON.parse(fs.readFileSync('../package.json'));
 
+//Number Of ticket Solved,Raised,Open,Escalted
 router.get('/raise',(req,res)=>{
     res.setHeader('Content-Type', 'application/json');
     var key1 = Object.keys(file[0]);
@@ -21,4 +25,6 @@ router.get('/raise',(req,res)=>{
        res.json(obj);
      res.end();
 });
+
+//Exporting this Middleware
 module.exports = router;
