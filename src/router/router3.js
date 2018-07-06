@@ -1,9 +1,16 @@
+// Installing Dependecies
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+
+//Fetching Data from JSON File
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryOM.json'));
 const package = JSON.parse(fs.readFileSync('../package.json'));
-router.get('/SLA/:id',(req,res)=>{
+
+
+//Application/Team Approaching SlA
+router.get('/SLA/:id',(req,res)=>
+{
    static = [package.variable.openApproach];
     if(req.params.id == "team"){
         var valu2=file[0].openApproachingSLAs.byPerson;
@@ -18,6 +25,9 @@ router.get('/SLA/:id',(req,res)=>{
   }
 
 });
+
+//Application SLA Compilance
+
 router.get('/SLAComp/application/:id',(req,res)=>{
 
     if(req.params.id == "weekly"){
@@ -43,6 +53,7 @@ router.get('/SLAComp/application/:id',(req,res)=>{
  
  });
 
+ //Team SLA Compilance
  router.get('/SLAComp/team/:id',(req,res)=>{
 
     if(req.params.id == "weekly"){
@@ -66,4 +77,5 @@ router.get('/SLAComp/application/:id',(req,res)=>{
       }
  
  });
-module.exports=router;
+// Exporting this router to main Page
+ module.exports=router;
