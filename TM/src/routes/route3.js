@@ -117,35 +117,102 @@ router.get('/ticket-volume/:id',(req,res)=>
 
 router.get('/contri/:id',(req,res)=>
 {
-   if(req.params.id == "weekly"){
-        var valu2=file[0].myResolutionContribution.WTDData;
-        res.json(valu2);
+    var result=[];
+   
+    var static = [package.variable.label,package.variable.teamResolvedPercent,package.variable.myResolvedPercent,];
+    if(req.params.id == "weekly"){
+        
+        var key2=Object.keys(file[0].myResolutionContribution.WTDData[0]);
+        var key3=Object.keys(file[0].myResolutionContribution.WTDData[1]);
+       
+        
+            obj={};
+            for (var j=0;j<key2.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key2[j]]=file[0].myResolutionContribution.WTDData[0][key2[j]];
+                }
+            }
+            result.push(obj);
+            obj={};
+            for (var j=0;j<key3.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key3[j]]=file[0].myResolutionContribution.WTDData[1][key3[j]];
+                }
+            }
+            result.push(obj);  
+           res.json(result);
        
        }
       else if(req.params.id == "monthly"){
-        var valu2=file[0].myResolutionSLACompliance.MTDData;
-        res.json(valu2);
+        
+        var key2=Object.keys(file[0].myResolutionContribution.MTDData[0]);
+        var key3=Object.keys(file[0].myResolutionContribution.MTDData[1]);
+       
+        
+            obj={};
+            for (var j=0;j<key2.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key2[j]]=file[0].myResolutionContribution.MTDData[0][key2[j]];
+                }
+            }
+            result.push(obj);
+            obj={};
+            for (var j=0;j<key3.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key3[j]]=file[0].myResolutionContribution.MTDData[1][key3[j]];
+                }
+            }
+            result.push(obj);  
+           res.json(result);
        }
        else if(req.params.id == "quaterely"){
-        var valu2=file[0].myResolutionSLACompliance.QTDData;
-        res.json(valu2);
+        
+        var key2=Object.keys(file[0].myResolutionContribution.QTDData[0]);
+        var key3=Object.keys(file[0].myResolutionContribution.QTDData[1]);
+       
+        
+            obj={};
+            for (var j=0;j<key2.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key2[j]]=file[0].myResolutionContribution.QTDData[0][key2[j]];
+                }
+            }
+            result.push(obj);
+            obj={};
+            for (var j=0;j<key3.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key3[j]]=file[0].myResolutionContribution.QTDData[1][key3[j]];
+                }
+            }
+            result.push(obj);  
+           res.json(result);
        }
        else if(req.params.id == "yearly"){
-        var valu2=file[0].myResolutionSLACompliance.YTDData;
-        res.json(valu2);
+       
+        var key2=Object.keys(file[0].myResolutionContribution.YTDData[0]);
+        var key3=Object.keys(file[0].myResolutionContribution.YTDData[1]);
+       
+        
+            obj={};
+            for (var j=0;j<key2.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key2[j]]=file[0].myResolutionContribution.YTDData[0][key2[j]];
+                }
+            }
+            result.push(obj);
+            obj={};
+            for (var j=0;j<key3.length;j++){
+                if(static.includes(key2[j])){
+                   obj[key3[j]]=file[0].myResolutionContribution.YTDData[1][key3[j]];
+                }
+            }
+            result.push(obj);  
+           res.json(result);
        }
       else{
           res.send("wrong Url Guys");
       }
 });
-
-
-
-
-
-
-
-
 
 //Exporting Middleware Route3
 module.exports = router;
