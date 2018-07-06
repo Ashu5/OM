@@ -19,6 +19,7 @@
   },
   "variable": {
     "openApproach": "openApproachingSLAs",
-    "byApp": "byApp"
+    "byApp": "byApp",
+    "port": 3000
   }
 }
