@@ -1,5 +1,5 @@
 {
-  "name": "OM",
+  "name": "package-om",
   "version": "1.0.0",
   "description": "IT Dashboard",
   "main": "index.js",
