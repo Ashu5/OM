@@ -19,6 +19,7 @@
   },
   "variable": {
     "openApproach": "openApproachingSLAs",
+    "ticketVolume":"ticketVolume",
     "byApp": "byApp",
     "port": 3000,
     "totalCount": "totalCount",

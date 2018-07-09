@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs=require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryOM.json'));
+const package = JSON.parse(fs.readFileSync('../package.json'));
 router.get('/escalate',(req,res)=>{
 res.setHeader("Content-Type","application/json");
 //var key=file[0].escalations.all.byApp;
@@ -20,6 +21,7 @@ res.end();
 
 router.get("/ticketVol/:id",(req,res)=>{
 
+    var value=package.variable.ticketVolume;
     if(req.params.id=="wld"){
         var match=['appName','raisedCount','openCount'];
         var key=Object.keys(file[0].ticketVolume.WTDData);

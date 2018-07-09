@@ -22,12 +22,12 @@ router.get('/s1ands2/:Id',(req,res)=>{
              {
                  if(static.includes(key2[j]))
                  {
-                     
+                   
                      for(var k=0;k<key3.length;k++)
                      {
                           if(static.includes(key3[k]))
                           {
-                             
+                    
                             obj[key2[j]]={
                                [key3[k]] :file[0].ticketTrendThisYear.dailyData[i][key2[j]][key3[k]]
                             };
@@ -39,7 +39,8 @@ router.get('/s1ands2/:Id',(req,res)=>{
 
 
              }
-             result.push(obj);  
+             
+             result.push(obj);
          
         
         } 
