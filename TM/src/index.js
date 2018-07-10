@@ -7,6 +7,11 @@ const fs = require('fs');
 const port = JSON.parse(fs.readFileSync('../package.json'));
 
 // Using Middleware
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use('/api',require('./routes/route1'));
 app.use('/api',require('./routes/route2'));
 app.use('/api',require('./routes/route3'));
