@@ -25,7 +25,9 @@
     "raisedTodayCount": "raisedTodayCount",
     "solvedTodayCount": "solvedTodayCount",
     "escalationsCount": "escalationsCount",
-    "port":4560
+    "port":4560,
+    "timeInstance":"timeInstance"
+
   }
  
 }

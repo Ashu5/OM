@@ -10,22 +10,36 @@ const external = JSON.parse(fs.readFileSync('../package.json'));
 //Ticket Trend basis on Daily,Weekly,Monthly,Quarterly
 router.get('/ticket/:Id',(req,res)=>{
    
-    var static = [external.variable.totalRaisedCount,external.variable.totalResolvedCount];    
+    var static = [external.variable.totalRaisedCount,
+      external.variable.totalResolvedCount,external.variable.timeInstance];    
     var result = [];
     
     if(req.params.Id == "daily")
     { 
      var key1 =Object.keys(file[0].ticketTrendThisYear.dailyData); 
-     var key2 =Object.keys(file[0].ticketTrendThisYear.dailyData[0]);      
+     var key2 =Object.keys(file[0].ticketTrendThisYear.dailyData[0]);
+     var months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"];      
         for(var i =0; i < key1.length; i++)
         {
           let obj2={};
+         
+
             for(var j=0; j< key2.length; j++)
             {
                  if(static.includes(key2[j]))
                    {
-                     obj2[key2[j]]=file[0].ticketTrendThisYear.dailyData[i][key2[j]];       
-                    }
+                   if(key2[j]=="timeInstance")
+                   {
+                    var timestamp =file[0].ticketTrendThisYear.dailyData[i][key2[j]];
+                    var d =new Date(timestamp*1000);
+                    var current_date=d.getDate();
+                    var current_month=months[d.getMonth()];
+                    var final_date = current_date+" "+current_month;
+                    obj2["date"]=final_date;
+                   }
+                    obj2[key2[j]]=file[0].ticketTrendThisYear.dailyData[i][key2[j]];       
+                  //console.log(obj2);  
+                  }
             }
              result.push(obj2);
         }  
