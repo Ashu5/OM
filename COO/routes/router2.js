@@ -7,6 +7,10 @@ const fs = require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryCOO.json'));
 const external = JSON.parse(fs.readFileSync('../package.json'));  
 
+//Months Array
+var months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"]; 
+
+
 //Ticket Trend basis on Daily,Weekly,Monthly,Quarterly
 router.get('/ticket/:Id',(req,res)=>{
    
@@ -18,7 +22,7 @@ router.get('/ticket/:Id',(req,res)=>{
     { 
      var key1 =Object.keys(file[0].ticketTrendThisYear.dailyData); 
      var key2 =Object.keys(file[0].ticketTrendThisYear.dailyData[0]);
-     var months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"];      
+         
         for(var i =0; i < key1.length; i++)
         {
           let obj2={};
@@ -30,15 +34,9 @@ router.get('/ticket/:Id',(req,res)=>{
                    {
                    if(key2[j]=="timeInstance")
                    {
-                    var timestamp =file[0].ticketTrendThisYear.dailyData[i][key2[j]];
-                    var d =new Date(timestamp*1000);
-                    var current_date=d.getDate();
-                    var current_month=months[d.getMonth()];
-                    var final_date = current_date+" "+current_month;
-                    obj2["date"]=final_date;
+                   obj2["date"]=getDate(file[0].ticketTrendThisYear.dailyData[i][key2[j]]);
                    }
                     obj2[key2[j]]=file[0].ticketTrendThisYear.dailyData[i][key2[j]];       
-                  //console.log(obj2);  
                   }
             }
              result.push(obj2);
@@ -56,6 +54,10 @@ router.get('/ticket/:Id',(req,res)=>{
             {
              if(static.includes(key2[j]))
                 {
+                  if(key2[j]=="timeInstance")
+                  {
+                  obj2["date"]=getDate(file[0].ticketTrendThisYear.monthlyData[i][key2[j]]);
+                  }
                  obj2[key2[j]]=file[0].ticketTrendThisYear.monthlyData[i][key2[j]];       
                 }
             }
@@ -74,6 +76,10 @@ router.get('/ticket/:Id',(req,res)=>{
                    {
                 if(static.includes(key2[j]))
                        {
+                        if(key2[j]=="timeInstance")
+                        {
+                        obj2["date"]=getDate(file[0].ticketTrendThisYear.weeklyData[i][key2[j]]);
+                        }
                       obj2[key2[j]]=file[0].ticketTrendThisYear.weeklyData[i][key2[j]];       
                          }
                          }
@@ -94,6 +100,10 @@ router.get('/ticket/:Id',(req,res)=>{
                    {
                 if(static.includes(key2[j]))
                        {
+                        if(key2[j]=="timeInstance")
+                        {
+                        obj2["date"]=getDate(file[0].ticketTrendThisYear.quarterlyData[i][key2[j]]);
+                        }
                       obj2[key2[j]]=file[0].ticketTrendThisYear.quarterlyData[i][key2[j]];       
                          }
                          }
@@ -107,6 +117,12 @@ router.get('/ticket/:Id',(req,res)=>{
         res.send("wrong Url");
     }
 });
+
+//Getdate from timestamp
+function getDate(timestamp)
+{
+   return (new Date(timestamp*1000).getDate()+" "+months[new Date(timestamp*1000).getMonth()]);
+}
 
 //Exporting this Middleware
 module.exports = router;
