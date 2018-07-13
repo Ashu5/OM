@@ -3,6 +3,8 @@ const router = express.Router();
 const fs=require('fs');
 const file = JSON.parse(fs.readFileSync('../dashboardSummaryOM.json'));
 const package = JSON.parse(fs.readFileSync('../package.json'));
+
+var months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"]; 
 router.get('/escalate',(req,res)=>{
 res.setHeader("Content-Type","application/json");
 //var key=file[0].escalations.all.byApp;
@@ -20,20 +22,24 @@ res.end();
 });
 
 router.get("/ticketVol/:id",(req,res)=>{
+    
 
     var value=package.variable.ticketVolume;
-    if(req.params.id=="wld"){
+    if(req.params.id=="wtd"){
         var match=['appName','raisedCount','openCount'];
         var key=Object.keys(file[0].ticketVolume.WTDData);
         var key2=Object.keys(file[0].ticketVolume.WTDData[0]);
         var result=[];
+
         
         for(var i=0;i<key.length;i++){
             var jsonObj={};
             for(var j=0;j<key2.length;j++){
 
                 if(match.includes(key2[j])){
-                    
+                     if(key2[j]=="timeInstance"){
+                     obj2["date"]=getDate(file[0].ticketTrendThisYear.dailyData[i][key2[j]]);
+                     }
                     jsonObj[key2[j]]=file[0].ticketVolume.WTDData[i][key2[j]];
                 }
 
@@ -57,7 +63,9 @@ router.get("/ticketVol/:id",(req,res)=>{
             for(var j=0;j<key2.length;j++){
 
                 if(match.includes(key2[j])){
-                    
+                    if(key2[j]=="timeInstance"){
+                        obj2["date"]=getDate(file[0].ticketTrendThisYear.dailyData[i][key2[j]]);
+                        }
                     jsonObj[key2[j]]=file[0].ticketVolume.MTDData[i][key2[j]];
                 }
 
@@ -82,7 +90,9 @@ router.get("/ticketVol/:id",(req,res)=>{
             for(var j=0;j<key2.length;j++){
 
                 if(match.includes(key2[j])){
-                    
+                    if(key2[j]=="timeInstance"){
+                        obj2["date"]=getDate(file[0].ticketTrendThisYear.dailyData[i][key2[j]]);
+                        }
                     jsonObj[key2[j]]=file[0].ticketVolume.QTDData[i][key2[j]];
                 }
 
@@ -106,7 +116,9 @@ router.get("/ticketVol/:id",(req,res)=>{
             for(var j=0;j<key2.length;j++){
 
                 if(match.includes(key2[j])){
-                    
+                    if(key2[j]=="timeInstance"){
+                        obj2["date"]=getDate(file[0].ticketTrendThisYear.dailyData[i][key2[j]]);
+                        }
                     jsonObj[key2[j]]=file[0].ticketVolume.YTDData[i][key2[j]];
                 }
 

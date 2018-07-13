@@ -10,15 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemon": "^1.18.1"
   },
-  "variable":{
-    "port":3000,
-    "appName":"appName",
-    "raisedCount":"raisedCount",
-    "openCount":"openCount",
-    "label":"label",
-    "teamResolvedPercent":"teamResolvedPercent",
-    "myResolvedPercent":"myResolvedPercent"
+  "variable": {
+    "port": 3000,
+    "appName": "appName",
+    "raisedTodayCount":"raisedTodayCount",
+    "solvedTodayCount":"solvedTodayCount",
+    "raisedCount": "raisedCount",
+    "openCount": "openCount",
+    "label": "label",
+    "teamResolvedPercent": "teamResolvedPercent",
+    "myResolvedPercent": "myResolvedPercent"
   }
 }
