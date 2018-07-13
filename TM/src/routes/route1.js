@@ -12,13 +12,16 @@ router.get('/raiseTM',(req,res)=>{
    var static = [external.variable.raisedTodayCount,external.variable.solvedTodayCount];
    var obj ={};
   for (var i = 0; i < key1.length; i++) {
-    
+   
       if(key1[i]==static[i]){
       
        obj[key1[i]]=file[0][key1[i]];      
-      
+       //obj[key1[i]]=file[0]["escalations"]["my"].totalCount;
       
 
+       }
+       else if(key1[i]=="escalations"){
+         obj[key1[i]]=file[0]["escalations"].my.totalCount;
        }
     
         
